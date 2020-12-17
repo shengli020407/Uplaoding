@@ -13,35 +13,37 @@ import android.view.ViewGroup;
 
 import com.example.uplaoding.R;
 import com.example.uplaoding.adapter.SaveAdapter;
+import com.example.uplaoding.base.BaseFragment;
 import com.example.uplaoding.bean.SaveBean;
 import com.example.uplaoding.contract.SaveContract;
 import com.example.uplaoding.presenter.ImpSavePresenter;
 
 import java.util.ArrayList;
 
-public class SaveFragment extends Fragment implements SaveContract.SaveView {
+public class SaveFragment extends BaseFragment<SaveContract.SavePresenter> implements SaveContract.SaveView {
 
     private RecyclerView rec;
     private ArrayList<SaveBean.NewsDTO> list;
     private SaveAdapter adapter;
     private ImpSavePresenter presenter;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_save, container, false);
-        initView(view);
-        initDate();
-        return view;
-    }
 
-    private void initDate() {
+    protected void initDate() {
         presenter = new ImpSavePresenter(this);
         presenter.savePresenter();
     }
 
-    private void initView(View view) {
+    @Override
+    protected int getLayout() {
+        return R.layout.fragment_save;
+    }
+
+    @Override
+    protected SaveContract.SavePresenter getPresenter() {
+        return presenter;
+    }
+
+    protected void initView(View view) {
         rec = view.findViewById(R.id.rec);
         rec.setLayoutManager(new LinearLayoutManager(getContext()));
         list = new ArrayList<>();

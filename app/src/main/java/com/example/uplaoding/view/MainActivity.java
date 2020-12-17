@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.uplaoding.R;
 import com.example.uplaoding.adapter.VpAdapter;
+import com.example.uplaoding.base.BaseActivity;
 import com.example.uplaoding.bean.BannerBean;
 import com.example.uplaoding.contract.MainContract;
 import com.example.uplaoding.fragment.SaveFragment;
@@ -23,7 +23,7 @@ import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements MainContract.MainView {
+public class MainActivity extends BaseActivity<MainContract.MainPresenter> implements MainContract.MainView {
 
     private Banner ban;
     private TabLayout tab;
@@ -32,20 +32,23 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
     private VpAdapter adapter;
     private ImpMainPresenter presenter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initView();
-        initDate();
-    }
-
-    private void initDate() {
+    public void initDate() {
         presenter = new ImpMainPresenter(this);
         presenter.mainPresenter();
     }
 
-    private void initView() {
+    @Override
+    protected MainContract.MainPresenter getPresenter() {
+        return presenter;
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_main;
+    }
+
+
+    public void initView() {
         ban = findViewById(R.id.ban);
         tab = findViewById(R.id.tab);
         vp = findViewById(R.id.vp);

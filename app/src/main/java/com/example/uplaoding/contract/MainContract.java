@@ -1,11 +1,12 @@
 package com.example.uplaoding.contract;
 
 import com.example.uplaoding.RetrofitUtils.net.ImpCallBack;
+import com.example.uplaoding.base.BaseView;
 import com.example.uplaoding.bean.BannerBean;
 
 public class MainContract {
 
-    public interface MainView{
+    public interface MainView extends BaseView {
         void onSuccess(BannerBean bannerBean);
         void onFail(String error);
     }
@@ -14,7 +15,7 @@ public class MainContract {
         <T> void mianModel(String url, ImpCallBack<T>callBack);
     }
 
-    public interface MainPresenter{
+    public interface MainPresenter extends BaseView{
         void mainPresenter();
     }
 

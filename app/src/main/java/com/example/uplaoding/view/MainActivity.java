@@ -23,23 +23,21 @@ import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 
-public class MainActivity extends BaseActivity<MainContract.MainPresenter> implements MainContract.MainView {
+public class MainActivity extends BaseActivity<ImpMainPresenter> implements MainContract.MainView {
 
     private Banner ban;
     private TabLayout tab;
     private ViewPager vp;
     private ArrayList<Fragment> list;
     private VpAdapter adapter;
-    private ImpMainPresenter presenter;
 
-    public void initDate() {
-        presenter = new ImpMainPresenter(this);
+    protected void initDate() {
         presenter.mainPresenter();
     }
 
     @Override
-    protected MainContract.MainPresenter getPresenter() {
-        return presenter;
+    public ImpMainPresenter getPresenter() {
+        return new ImpMainPresenter();
     }
 
     @Override

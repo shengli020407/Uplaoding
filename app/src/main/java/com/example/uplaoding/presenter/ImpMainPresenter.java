@@ -2,17 +2,18 @@ package com.example.uplaoding.presenter;
 
 import com.example.uplaoding.RetrofitUtils.net.ImpCallBack;
 import com.example.uplaoding.RetrofitUtils.net.Urlconstant;
+import com.example.uplaoding.base.BasePresenter;
 import com.example.uplaoding.bean.BannerBean;
 import com.example.uplaoding.contract.MainContract;
 import com.example.uplaoding.model.ImpMainModel;
 
-public class ImpMainPresenter implements MainContract.MainPresenter {
-    private MainContract.MainView mainView;
-    private final ImpMainModel model;
+public class ImpMainPresenter extends BasePresenter<MainContract.MainView> implements MainContract.MainPresenter {
 
-    public ImpMainPresenter(MainContract.MainView mainView) {
-        this.mainView = mainView;
-        model = new ImpMainModel();
+
+    public  MainContract.MainModel model;
+
+    public ImpMainPresenter(){
+        this.model = new ImpMainModel();
     }
 
     @Override
@@ -20,12 +21,12 @@ public class ImpMainPresenter implements MainContract.MainPresenter {
         model.mianModel(Urlconstant.BANLIST, new ImpCallBack<BannerBean>() {
             @Override
             public void onSuccess(BannerBean bannerBean) {
-                mainView.onSuccess(bannerBean);
+                iview.onSuccess(bannerBean);
             }
 
             @Override
             public void onFail(String error) {
-                mainView.onFail(error);
+                iview.onFail(error);
             }
         });
     }

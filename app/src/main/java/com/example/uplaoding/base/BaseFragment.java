@@ -11,7 +11,7 @@ import com.example.uplaoding.R;
 
 public abstract class BaseFragment<T> extends Fragment {
 
-    private T presenter;
+    public T presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

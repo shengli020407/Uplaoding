@@ -7,18 +7,11 @@ import com.example.uplaoding.bean.BannerBean;
 import com.example.uplaoding.contract.MainContract;
 import com.example.uplaoding.model.ImpMainModel;
 
-public class ImpMainPresenter extends BasePresenter<MainContract.MainView> implements MainContract.MainPresenter {
-
-
-    public  MainContract.MainModel model;
-
-    public ImpMainPresenter(){
-        this.model = new ImpMainModel();
-    }
+public class ImpMainPresenter extends BasePresenter<MainContract.MainView,MainContract.MainModel> implements MainContract.MainPresenter {
 
     @Override
     public void mainPresenter() {
-        model.mianModel(Urlconstant.BANLIST, new ImpCallBack<BannerBean>() {
+        iModel.mianModel(Urlconstant.BANLIST, new ImpCallBack<BannerBean>() {
             @Override
             public void onSuccess(BannerBean bannerBean) {
                 iview.onSuccess(bannerBean);
@@ -29,5 +22,10 @@ public class ImpMainPresenter extends BasePresenter<MainContract.MainView> imple
                 iview.onFail(error);
             }
         });
+    }
+
+    @Override
+    protected MainContract.MainModel getiModel() {
+        return new ImpMainModel(this);
     }
 }

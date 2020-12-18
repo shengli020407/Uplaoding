@@ -1,6 +1,7 @@
 package com.example.uplaoding.contract;
 
 import com.example.uplaoding.RetrofitUtils.net.ImpCallBack;
+import com.example.uplaoding.base.BaseView;
 import com.example.uplaoding.bean.SaveBean;
 
 public class SaveContract {

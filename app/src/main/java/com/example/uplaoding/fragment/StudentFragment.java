@@ -13,23 +13,22 @@ import android.view.ViewGroup;
 
 import com.example.uplaoding.R;
 import com.example.uplaoding.adapter.StudentAdapter;
-import com.example.uplaoding.base.BaseFragment;
 import com.example.uplaoding.bean.StudentBean;
 import com.example.uplaoding.contract.StudentContract;
+import com.example.uplaoding.presenter.ImpSavePresenter;
 import com.example.uplaoding.presenter.ImpStudentPresenter;
+import com.example.uplaodinglibrary.base.BaseFragment;
 
 import java.util.ArrayList;
 
-public class StudentFragment extends BaseFragment<StudentContract.StudentPresenter> implements StudentContract.StudentView {
+public class StudentFragment extends BaseFragment<ImpStudentPresenter> implements StudentContract.StudentView {
 
     private RecyclerView rec;
     private ArrayList<StudentBean.StudenlistDTO> list;
     private StudentAdapter studentAdapter;
-    private ImpStudentPresenter presenter;
 
 
     protected void initDate() {
-        presenter = new ImpStudentPresenter(this);
         presenter.studentPresenter();
     }
 
@@ -39,8 +38,8 @@ public class StudentFragment extends BaseFragment<StudentContract.StudentPresent
     }
 
     @Override
-    protected StudentContract.StudentPresenter getPresenter() {
-        return presenter;
+    protected ImpStudentPresenter getPresenter() {
+        return new ImpStudentPresenter();
     }
 
     protected void initView(View view) {

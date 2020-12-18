@@ -1,4 +1,4 @@
-package com.example.uplaoding.RetrofitUtils.net;
+package com.example.uplaodinglibrary.net;
 
 public interface ImpNetWorkInerface {
 

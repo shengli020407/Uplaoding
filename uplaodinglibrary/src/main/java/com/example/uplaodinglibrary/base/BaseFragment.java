@@ -1,4 +1,4 @@
-package com.example.uplaoding.base;
+package com.example.uplaodinglibrary.base;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,9 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.uplaoding.R;
-
-public abstract class BaseFragment<T> extends Fragment {
+public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView{
 
     public T presenter;
 
@@ -19,6 +17,7 @@ public abstract class BaseFragment<T> extends Fragment {
 
         if (presenter==null){
             presenter=getPresenter();
+            presenter.attachview(this);
         }
 
         initView(view);

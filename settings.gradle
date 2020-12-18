@@ -1,2 +1,3 @@
+include ':uplaodinglibrary'
 include ':app'
 rootProject.name = "Uplaoding"

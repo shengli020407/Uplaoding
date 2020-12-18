@@ -1,4 +1,4 @@
-package com.example.uplaoding.base;
+package com.example.uplaodinglibrary.base;
 
 public abstract class BasePresenter<V extends BaseView,M extends BaseModel> {
 

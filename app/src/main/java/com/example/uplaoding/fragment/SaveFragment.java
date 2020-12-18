@@ -13,23 +13,21 @@ import android.view.ViewGroup;
 
 import com.example.uplaoding.R;
 import com.example.uplaoding.adapter.SaveAdapter;
-import com.example.uplaoding.base.BaseFragment;
 import com.example.uplaoding.bean.SaveBean;
 import com.example.uplaoding.contract.SaveContract;
 import com.example.uplaoding.presenter.ImpSavePresenter;
+import com.example.uplaodinglibrary.base.BaseFragment;
 
 import java.util.ArrayList;
 
-public class SaveFragment extends BaseFragment<SaveContract.SavePresenter> implements SaveContract.SaveView {
+public class SaveFragment extends BaseFragment<ImpSavePresenter> implements SaveContract.SaveView {
 
     private RecyclerView rec;
     private ArrayList<SaveBean.NewsDTO> list;
     private SaveAdapter adapter;
-    private ImpSavePresenter presenter;
 
 
     protected void initDate() {
-        presenter = new ImpSavePresenter(this);
         presenter.savePresenter();
     }
 
@@ -39,8 +37,8 @@ public class SaveFragment extends BaseFragment<SaveContract.SavePresenter> imple
     }
 
     @Override
-    protected SaveContract.SavePresenter getPresenter() {
-        return presenter;
+    protected ImpSavePresenter getPresenter() {
+        return new ImpSavePresenter();
     }
 
     protected void initView(View view) {

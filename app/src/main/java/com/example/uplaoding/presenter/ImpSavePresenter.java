@@ -1,35 +1,35 @@
 package com.example.uplaoding.presenter;
 
-import com.example.uplaoding.RetrofitUtils.net.ImpCallBack;
-import com.example.uplaoding.RetrofitUtils.net.Urlconstant;
-import com.example.uplaoding.base.BasePresenter;
 import com.example.uplaoding.bean.SaveBean;
 import com.example.uplaoding.contract.SaveContract;
 import com.example.uplaoding.model.ImpSaveModel;
+import com.example.uplaodinglibrary.base.BasePresenter;
+import com.example.uplaodinglibrary.net.ImpCallBack;
+import com.example.uplaodinglibrary.net.Urlconstant;
 
-public class ImpSavePresenter implements SaveContract.SavePresenter {
-
-    public SaveContract.SaveModel model;
-    public SaveContract.SaveView saveView;
-
-    public ImpSavePresenter(SaveContract.SaveView saveView) {
-        this.saveView = saveView;
-        model = new ImpSaveModel();
-    }
+public class ImpSavePresenter extends BasePresenter<SaveContract.SaveView,SaveContract.SaveModel> implements SaveContract.SavePresenter{
 
 
     @Override
     public void savePresenter() {
-        model.saveModel(Urlconstant.SAVELIST, new ImpCallBack<SaveBean>() {
+        iModel.saveModel(Urlconstant.SAVELIST, new ImpCallBack<SaveBean>() {
             @Override
             public void onSuccess(SaveBean saveBean) {
-                saveView.onSuccess(saveBean);
+                iview.onSuccess(saveBean);
             }
 
             @Override
             public void onFail(String error) {
-                saveView.onFail(error);
+                iview.onFail(error);
             }
         });
     }
+
+    @Override
+    protected SaveContract.SaveModel getiModel() {
+        return new ImpSaveModel(this);
+    }
+
+
+
 }

@@ -1,9 +1,8 @@
 package com.example.uplaoding.model;
 
-import com.example.uplaoding.RetrofitUtils.net.ImpCallBack;
-import com.example.uplaoding.RetrofitUtils.net.Utils;
 import com.example.uplaoding.contract.MainContract;
-import com.example.uplaoding.presenter.ImpMainPresenter;
+import com.example.uplaodinglibrary.net.ImpCallBack;
+import com.example.uplaodinglibrary.net.Utils;
 
 import retrofit2.Retrofit;
 
